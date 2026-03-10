@@ -1,12 +1,12 @@
 # Import libraries required for connecting to mysql
 import mysql.connector
 
-# Import libraries required for connecting to DB2 or PostgreSql
+# Import libraries required for connecting to PostgreSql
 import psycopg2
 
 # Connect to MySQL
 connection = mysql.connector.connect(user='root', password='BXQwlKEHysIcdqsiFt7l1hUa',host='172.21.49.69',database='sales')
-# Connect to DB2 or PostgreSql
+# Connect to PostgreSql
 # connectction details
 dsn_hostname = '172.21.66.53'
 dsn_user='postgres'        # e.g. "abc12345"
@@ -25,8 +25,8 @@ conn = psycopg2.connect(
    port= dsn_port
 )
 
-# Find out the last rowid from DB2 data warehouse or PostgreSql data warehouse
-# The function get_last_rowid must return the last rowid of the table sales_data on the IBM DB2 database or PostgreSql.
+# Find out the last rowid from or PostgreSql data warehouse
+# The function get_last_rowid must return the last rowid of the table sales_data on the PostgreSql.
 
 def get_last_rowid():
     cursor = conn.cursor()
@@ -57,8 +57,8 @@ new_records = get_latest_records(last_row_id)
 
 print("New rows on staging datawarehouse = ", len(new_records))
 
-# Insert the additional records from MySQL into DB2 or PostgreSql data warehouse.
-# The function insert_records must insert all the records passed to it into the sales_data table in IBM DB2 database or PostgreSql.
+# Insert the additional records from MySQL into PostgreSql data warehouse.
+# The function insert_records must insert all the records passed to it into the sales_data table in or PostgreSql.
 
 def insert_records(records):
     cursor = conn.cursor()
@@ -73,7 +73,8 @@ print("New rows inserted into production datawarehouse = ", len(new_records))
 
 # disconnect from mysql warehouse
 connection.close()
-# disconnect from DB2 or PostgreSql data warehouse 
+# disconnect from PostgreSql data warehouse 
 conn.close()
 
 # End of program
+
